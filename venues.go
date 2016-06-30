@@ -43,6 +43,11 @@ func (c *FSClient) GetVenue(params map[string]string) (interface{}, error) {
 	return c.dispatchRequest(params, "")
 }
 
+func (c *FSClient) GetVenueDetail(id string, params map[string]string) (interface{}, error) {
+	venue_id = fmt.Sprintf("/%s")
+	return c.dispatchRequest(params, venue_id)
+}
+
 func (c *FSClient) dispatchRequest(params map[string]string, endpoint string) (interface{}, error) {
 	var reqUrl bytes.Buffer
 	reqUrl.WriteString(c.apiUrl + endpoint)
@@ -50,9 +55,11 @@ func (c *FSClient) dispatchRequest(params map[string]string, endpoint string) (i
 	for k, v := range params {
 		values.Set(k, v)
 	}
+	
 	values.Set("client_id", c.client_id)
 	values.Set("client_secret", c.client_secret)
 	values.Set("v", c.v)
+	
 	reqUrl.WriteString(values.Encode())
 	r, e := c.Client.Get(reqUrl.String())
 	defer r.Body.Close()
