@@ -44,7 +44,7 @@ func (c *FSClient) GetVenue(params map[string]string) (interface{}, error) {
 }
 
 func (c *FSClient) GetVenueDetail(id string, params map[string]string) (interface{}, error) {
-	venue_id := fmt.Sprintf("/%s", id)
+	venue_id := fmt.Sprintf("%s?", id)
 	return c.dispatchRequest(params, venue_id)
 }
 
