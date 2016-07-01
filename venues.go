@@ -36,7 +36,7 @@ func (c *FSClient) GetCategories(params map[string]string) (interface{}, error) 
 }
 
 func (c *FSClient) ExploreVenues(params map[string]string) (interface{}, error) {
-	return c.dispatchRequest(params, "/explore/")
+	return c.dispatchRequest(params, "/explore?")
 }
 
 func (c *FSClient) GetVenue(params map[string]string) (interface{}, error) {
